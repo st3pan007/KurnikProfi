@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KURNIK-PROFI.CZ | Kurníky vyrobené s láskou k detailu</title>
+    <meta name="description" content="Ruční výroba prémiových kurníků. Spojujeme tradiční řemeslo s moderními technologiemi pro spokojené slepice a jejich chovatele.">
+    <link rel="icon" type="image/png" href="KurnikProfiLogo.png">
+    <link rel="shortcut icon" type="image/png" href="KurnikProfiLogo.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-brown: #3E2723;
+            --light-brown: #6D4C41;
+            --beige: #D7CCC8;
+            --warm-red: #B91C1C;
+            --forest-green: #2E7D32;
+            --cream: #FFF8E1;
+            --light-gray: #ECEFF1;
+            --white: #FFFFFF;
+        }
+        
+        /* Globální reset pro viewport */
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+        
+        html {
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-brown);
+            overflow-x: hidden;
+            background: var(--cream);
+            max-width: 100vw;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            max-width: 100vw;
+            height: 90px;
+            background: rgba(255, 248, 225, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            position: relative;
+            height: 100%;
+        }
+        
+        .nav-logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            z-index: 2;
+        }
+        
+        .nav-logo img {
+            height: 80px;
+            width: auto;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            width: 100%;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 20px;
+        }
+        
+        .nav-left {
+            display: flex;
+            gap: 30px;
+            margin-right: 140px;
+        }
+        
+        .nav-right {
+            display: flex;
+            gap: 30px;
+            margin-left: 140px;
+        }
+        
+        .nav-menu a {
+            color: var(--primary-brown);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--warm-red);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            margin-top: 90px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                        url('https://images.pexels.com/photos/1562389/pexels-photo-1562389.jpeg') center/cover;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            margin-bottom: 40px;
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--warm-red);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+        
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--white);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        /* Story Section */
+        .story {
+            padding: 120px 0;
+            background: var(--white);
+            position: relative;
+        }
+        
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .story-content h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--primary-brown);
+            margin-bottom: 30px;
+        }
+        
+        .story-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--light-brown);
+            margin-bottom: 20px;
+        }
+        
+        .story-image {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Values Section */
+        .values {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--white), var(--cream));
+        }
+        
+        .values h2 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 60px;
+            color: var(--primary-brown);
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .value-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: var(--beige);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .value-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--warm-red);
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-brown);
+        }
+        
+        /* Video Section */
+        .video-section {
+            padding: 100px 0;
+            background: var(--cream);
+        }
+        
+        .smart-henhouse-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+        
+        .smart-henhouse-intro h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--primary-brown);
+            margin-bottom: 15px;
+        }
+        
+        .smart-henhouse-intro h3 {
+            font-size: 1.8rem;
+            color: var(--warm-red);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .smart-henhouse-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--light-brown);
+        }
+        
+        .video-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 120px 0;
+            background: var(--white);
+        }
+        
+        .products h2 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 20px;
+            color: var(--primary-brown);
+        }
+        
+        .products-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--light-brown);
+            margin-bottom: 60px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .product-card {
+            background: var(--cream);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card.featured {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.2);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--warm-red);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .product-image {
+            height: 250px;
+            background: url('https://images.pexels.com/photos/195226/pexels-photo-195226.jpeg') center/cover;
+        }
+        
+        .product-content {
+            padding: 30px;
+        }
+        
+        .product-name {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--primary-brown);
+        }
+        
+        .product-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--warm-red);
+            margin-bottom: 20px;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .product-features li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--light-brown);
+        }
+        
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--forest-green);
+            font-weight: bold;
+        }
+        
+        .product-button {
+            display: block;
+            text-align: center;
+            padding: 15px 30px;
+            background: var(--primary-brown);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .product-button:hover {
+            background: var(--light-brown);
+            transform: translateY(-2px);
+        }
+        
+        /* Premium Product */
+        .premium-product {
+            background: linear-gradient(135deg, var(--primary-brown), var(--light-brown));
+            padding: 60px;
+            border-radius: 30px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premium-product::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(220,38,38,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .premium-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .premium-product h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .premium-product p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .premium-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--warm-red);
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .premium-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+        }
+        
+        /* Process Section */
+        .process {
+            padding: 120px 0;
+            background: linear-gradient(rgba(255, 248, 225, 0.9), rgba(255, 248, 225, 0.9)),
+                        url('https://images.pexels.com/photos/1094767/pexels-photo-1094767.jpeg') center/cover fixed;
+            position: relative;
+        }
+        
+        .process h2 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 20px;
+            color: var(--primary-brown);
+        }
+        
+        .process-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--light-brown);
+            max-width: 600px;
+            margin: 0 auto 80px;
+        }
+        
+        .process-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .process-card {
+            flex: 0 1 calc(33.333% - 20px);
+            max-width: 380px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px 30px;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            min-height: 280px;
+        }
+        
+        .process-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        
+        .process-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--warm-red);
+            opacity: 0.2;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.4s ease;
+        }
+        
+        .process-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .process-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-brown);
+            font-weight: 700;
+        }
+        
+        .process-card p {
+            color: var(--light-brown);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        
+        .process-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .process-icon i {
+            font-size: 26px;
+            color: var(--warm-red);
+        }
+        
+
+        
+
+        /* Gallery Section */
+        .gallery {
+            padding: 120px 0;
+            background: var(--white);
+        }
+        
+        .gallery h2 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 60px;
+            color: var(--primary-brown);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay p {
+            color: var(--white);
+            font-weight: 500;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 248, 225, 0.92)),
+                        url('https://images.pexels.com/photos/2131784/pexels-photo-2131784.jpeg') center/cover fixed;
+            position: relative;
+        }
+        
+        .contact h2 {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 60px;
+            color: var(--primary-brown);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--primary-brown);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: var(--cream);
+            transform: translateX(5px);
+        }
+        
+        .contact-text {
+            flex: 1;
+        }
+        
+        .contact-text strong {
+            display: block;
+            color: var(--primary-brown);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+        
+        .contact-text a {
+            color: var(--primary-brown);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-text a i {
+            font-size: 18px;
+            color: var(--primary-brown);
+            transition: color 0.3s ease;
+        }
+        
+        .contact-text a:hover {
+            color: var(--warm-red);
+        }
+        
+        .contact-text a:hover i {
+            color: var(--warm-red);
+        }
+        
+        .contact-socials {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid var(--cream);
+        }
+        
+        .contact-socials strong {
+            display: block;
+            color: var(--primary-brown);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+        
+        .contact-social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .contact-social-links a {
+            width: 50px;
+            height: 50px;
+            background: var(--cream);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .contact-social-links a:hover {
+            background: var(--white);
+            border-color: var(--warm-red);
+            transform: translateY(-3px);
+        }
+        
+        .contact-social-links a i {
+            font-size: 20px;
+            color: var(--primary-brown);
+            transition: color 0.3s ease;
+        }
+        
+        .contact-social-links a:hover i {
+            color: var(--warm-red);
+        }
+        
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--primary-brown);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-brown);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--beige);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--warm-red);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-button {
+            width: 100%;
+            padding: 18px;
+            background: var(--warm-red);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .form-button:hover {
+            background: var(--forest-green);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-brown);
+            color: var(--white);
+            padding: 30px 0;
+        }
+        
+        .footer-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-left {
+            flex: 1;
+        }
+        
+        .footer-left p {
+            margin: 0;
+            color: #f8f8f8;
+            font-size: 0.95rem;
+        }
+        
+        .footer-right {
+            flex: 1;
+            text-align: right;
+        }
+        
+        .footer-credit {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--white);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-credit:hover {
+            opacity: 1;
+        }
+        
+        .footer-credit span {
+            font-size: 0.9rem;
+            color: #fafafa;
+        }
+        
+        .footer-credit img {
+            height: 24px;
+            width: auto;
+            vertical-align: middle;
+        }
+        
+        /* Mobile specific navbar */
+        .mobile-icons {
+            display: none;
+        }
+        
+        .mobile-icons a {
+            text-decoration: none;
+        }
+        
+        @media (max-width: 767px) {
+            html {
+                overflow-x: hidden !important;
+                max-width: 100% !important;
+            }
+            
+            body {
+                overflow-x: hidden !important;
+                max-width: 100% !important;
+                position: relative !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            * {
+                max-width: 100vw !important;
+            }
+            
+            /* Specificky pro problematické elementy */
+            .hero,
+            .story,
+            .values,
+            .video-section,
+            .products,
+            .process,
+            .gallery,
+            .contact,
+            footer {
+                overflow-x: hidden !important;
+                max-width: 100% !important;
+                width: 100% !important;
+            }
+            
+            section {
+                overflow-x: hidden;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 15px;
+                box-sizing: border-box;
+            }
+            
+            nav {
+                height: 70px;
+                position: fixed;
+                width: 100%;
+                max-width: 100%;
+                left: 0;
+                right: 0;
+            }
+            
+            nav .container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 15px;
+                position: relative;
+                height: 100%;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-icons {
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                gap: 40px;
+                padding-bottom: 0;
+                height: 100%;
+            }
+            
+            .mobile-icons .mobile-left,
+            .mobile-icons .mobile-right {
+                flex: 0 0 auto;
+                align-self: flex-end;
+                padding-bottom: 7px;
+            }
+            
+            .mobile-icons .mobile-center {
+                flex: 0 0 auto;
+                align-self: flex-end;
+                padding-bottom: 0;
+            }
+            
+            /* Resetovat všechny transformace na mobilu */
+            .hero h1,
+            .hero-subtitle,
+            .cta-button,
+            .scroll-indicator,
+            .nav-logo {
+                transform: none !important;
+            }
+            
+            /* Oprava nav-logo transform */
+            .nav-logo {
+                position: static;
+                transform: none !important;
+                left: auto !important;
+                bottom: auto;
+                z-index: 10;
+            }
+            
+            .nav-logo img {
+                height: 50px;
+                max-width: 100%;
+            }
+            
+            .mobile-icons a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 35px;
+                height: 35px;
+                text-decoration: none;
+            }
+            
+            .mobile-icons i {
+                font-size: 18px;
+                color: var(--primary-brown);
+                transition: color 0.3s ease;
+            }
+            
+            .mobile-icons a:hover i {
+                color: var(--warm-red);
+            }
+            
+            /* Oprava hero sekce */
+            .hero {
+                margin-top: 70px;
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+                background-attachment: scroll !important;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                padding: 0 15px;
+                box-sizing: border-box;
+            }
+            
+            /* Oprava pro process sekci s fixed background */
+            .process {
+                background-attachment: scroll !important;
+            }
+            
+            /* Oprava pro contact sekci s fixed background */
+            .contact {
+                background-attachment: scroll !important;
+            }
+            
+            .process-number {
+                font-size: 2.5rem;
+                top: 15px;
+                right: 20px;
+                opacity: 0.1;
+            }
+            
+            /* Oprava pro process cards */
+            .process-grid {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                width: 100%;
+                max-width: 100%;
+                padding: 0 15px;
+                box-sizing: border-box;
+            }
+            
+            .process-card {
+                flex: none;
+                width: calc(100% - 30px);
+                max-width: calc(100% - 30px);
+                margin: 0 auto;
+            }
+            
+            .process-icon i {
+                font-size: 20px;
+            }
+            
+            /* Product cards same size on mobile */
+            .product-card.featured {
+                transform: scale(1);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            
+            /* Contact section text center on mobile */
+            .contact-info {
+                text-align: center;
+            }
+            
+            .contact-item {
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .contact-text a i {
+                font-size: 16px;
+            }
+            
+            .contact-text {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-text a {
+                display: inline-flex;
+                align-items: center;
+                text-decoration: none;
+            }
+            
+            .contact-social-links {
+                justify-content: center;
+            }
+            
+            .contact-social-links a {
+                text-decoration: none;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-icons {
+                display: none !important;
+            }
+            
+            .nav-menu {
+                display: flex !important;
+            }
+        }
+        
+        /* Tablet adjustments */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .process-number {
+                top: 20px;
+                right: 25px;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            
+            .story-grid,
+            .values-grid,
+            .products-grid,
+            .contact-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+            }
+            
+            .process-card {
+                padding: 30px 25px;
+                min-height: auto;
+            }
+            
+            .process-icon {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 20px;
+            }
+            
+            .process-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+            
+            /* Oprava pro video wrapper */
+            .video-container,
+            .video-wrapper,
+            .video-wrapper iframe {
+                max-width: 100% !important;
+            }
+            
+            /* Oprava pro gallery grid */
+            .gallery-grid {
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+                padding: 0 15px;
+                box-sizing: border-box;
+            }
+            
+            .gallery-item:nth-child(1) {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+            
+            .footer-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .footer-left,
+            .footer-right {
+                text-align: center;
+                width: 100%;
+            }
+            
+            .smart-henhouse-intro {
+                padding: 0 20px;
+            }
+            
+            .contact-social-links {
+                justify-content: center;
+            }
+        }
+        
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader-content {
+            text-align: center;
+        }
+        
+        .loader-logo {
+            width: 80px;
+            height: 80px;
+            animation: pulse-loader 1.5s ease-in-out infinite;
+        }
+        
+        .loader-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        @keyframes pulse-loader {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="KurnikProfiLogo.png" alt="Loading...">
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="mobile-icons">
+                <div class="mobile-left">
+                    <a href="tel:+420608582416" aria-label="Telefon">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+                <div class="mobile-center">
+                    <div class="nav-logo">
+                        <img src="KurnikProfiLogo.png" alt="KURNIK-PROFI Logo">
+                    </div>
+                </div>
+                <div class="mobile-right">
+                    <a href="https://www.youtube.com/@kurnik-profi" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <div class="nav-left">
+                    <li><a href="#contact">Kontakt</a></li>
+                    <li><a href="#story">O nás</a></li>
+                </div>
+                <div class="nav-logo">
+                    <img src="KurnikProfiLogo.png" alt="KURNIK-PROFI Logo">
+                </div>
+                <div class="nav-right">
+                    <li><a href="#gallery">Galerie</a></li>
+                    <li><a href="#products">Ceník</a></li>
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Domov, který si vaše slepice zaslouží</h1>
+            <p class="hero-subtitle">Ruční výroba s láskou k detailu. Spojujeme tradiční řemeslo s moderními technologiemi pro spokojené slepice a jejich chovatele.</p>
+            <a href="#products" class="cta-button">Prohlédnout kurníky</a>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5z"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story" id="story">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-content">
+                    <h2>Příběh jedné vášně pro dřevo</h2>
+                    <p>Vše začalo před 15 lety v malé dílně, kde jsme vytvořili náš první kurník. Nebyl to jen projekt – byla to výzva vytvořit něco, co bude sloužit generacím.</p>
+                    <p>Dnes každý kurník, který opustí naši dílnu, nese v sobě kus této původní vášně. Používáme pouze nejkvalitnější materiály a každý detail pečlivě promýšlíme.</p>
+                    <p>Nejde nám jen o to vyrobit kurník. Jde nám o to vytvořit dokonalý domov pro vaše slepice – bezpečný, komfortní a krásný. Místo, kde se budou cítit spokojené a kde vám budou přinášet radost každý den.</p>
+                </div>
+                <div class="story-image">
+                    <img src="https://images.pexels.com/photos/840111/pexels-photo-840111.jpeg" alt="Ruční výroba kurníku">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+        <div class="container">
+            <h2>Na čem nám záleží</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12,2L2,7V11C2,16.5 6.2,21.7 12,23C17.8,21.7 22,16.5 22,11V7L12,2Z"/>
+                        </svg>
+                    </div>
+                    <h3>Kvalita na prvním místě</h3>
+                    <p>Každý kurník je kompletně zateplený a vyrobený z nejkvalitnějších materiálů. Vydržel generacím.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/>
+                        </svg>
+                    </div>
+                    <h3>Láska k řemeslu</h3>
+                    <p>15 let zkušeností a neustálé zdokonalování. Každý kurník je unikátní dílo vytvořené s péčí.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+                        </svg>
+                    </div>
+                    <h3>Spokojené slepice</h3>
+                    <p>Navrhujeme kurníky tak, aby byly ideálním domovem. Světlo, teplo a pohodlí pro maximální snůšku.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Henhouse Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <div class="smart-henhouse-intro">
+                <h2>Prémiový chytrý kurník</h2>
+                <h3>Maximální možná verze</h3>
+                <p>Automatické zavírání oken, automatické zavírání dvířek, automatické dosypávání zrní, dopuštění vody s výplachem, kamerový systém, plašicí systém na hlodavce a kuny. Vše se dá řídit a nastavovat mobilním telefonem. Na každou akci jde nastavit notifikace, která vám řekne, že akce proběhla. Vše v českém jazyce s intuitivním nastavením.</p>
+            </div>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/-wahVl_tTDk?si=-PXx5ABmVeeWTfsE" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2>Vyberte si svůj kurník</h2>
+            <p class="products-subtitle">Každá verze je navržena s ohledem na potřeby vašich slepic</p>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image"></div>
+                    <div class="product-content">
+                        <h3 class="product-name">Basic Profi</h3>
+                        <div class="product-price">22 000 Kč</div>
+                        <ul class="product-features">
+                            <li>Nezateplený s šindelovou střechou</li>
+                            <li>Opláštění palubky</li>
+                            <li>Elektronické automatické dvířka</li>
+                            <li>Podlaha OSB deska bez lina</li>
+                            <li>Pro 15 slepic</li>
+                        </ul>
+                        <a href="#contact" class="product-button">Objednat nyní</a>
+                    </div>
+                </div>
+                
+                <div class="product-card featured">
+                    <div class="product-badge">Nejprodávanější</div>
+                    <div class="product-image"></div>
+                    <div class="product-content">
+                        <h3 class="product-name">Top Profi</h3>
+                        <div class="product-price">31 990 Kč</div>
+                        <ul class="product-features">
+                            <li>Kompletně zateplený</li>
+                            <li>Elektronické automatické dvířka</li>
+                            <li>Střecha asfaltový šindel</li>
+                            <li>Podlaha tvrdé lino</li>
+                            <li>Vnitřní napájecí systém</li>
+                            <li>Pro 15 slepic</li>
+                        </ul>
+                        <a href="#contact" class="product-button">Objednat nyní</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image"></div>
+                    <div class="product-content">
+                        <h3 class="product-name">Extra Profi</h3>
+                        <div class="product-price">38 000 Kč</div>
+                        <ul class="product-features">
+                            <li>Vše z verze Top Profi</li>
+                            <li>Okapový systém</li>
+                            <li>Nátěr dle vašeho výběru</li>
+                            <li>Solární ventilátor</li>
+                            <li>Popeliště pro hubení parazitů</li>
+                            <li>Speciální vychytávky</li>
+                        </ul>
+                        <a href="#contact" class="product-button">Objednat nyní</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2>Jak vzniká váš kurník</h2>
+            <p class="process-subtitle">Každý krok je pečlivě promyšlený a provedený s láskou k detailu</p>
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="process-number">01</div>
+                    <div class="process-content">
+                        <div class="process-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <h3>Výběr materiálu</h3>
+                        <p>Pečlivě vybíráme pouze kvalitní dřevo od prověřených dodavatelů. Každé prkno prochází kontrolou kvality.</p>
+                    </div>
+                </div>
+                
+                <div class="process-card">
+                    <div class="process-number">02</div>
+                    <div class="process-content">
+                        <div class="process-icon">
+                            <i class="fas fa-ruler-combined"></i>
+                        </div>
+                        <h3>Přesné řezání</h3>
+                        <p>S pomocí moderních strojů a tradičních technik připravujeme každý díl s milimetrovou přesností.</p>
+                    </div>
+                </div>
+                
+                <div class="process-card">
+                    <div class="process-number">03</div>
+                    <div class="process-content">
+                        <div class="process-icon">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <h3>Montáž konstrukce</h3>
+                        <p>Kurník postupně získává svou podobu. Dbejte na pevné spoje a dokonalé zateplení pro pohodlí slepic.</p>
+                    </div>
+                </div>
+                
+                <div class="process-card">
+                    <div class="process-number">04</div>
+                    <div class="process-content">
+                        <div class="process-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Finální úpravy</h3>
+                        <p>Aplikujeme ochranné nátěry, instalujeme technologie a kontrolujeme každý detail pro dokonalý výsledek.</p>
+                    </div>
+                </div>
+                
+                <div class="process-card">
+                    <div class="process-number">05</div>
+                    <div class="process-content">
+                        <div class="process-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Doprava a instalace</h3>
+                        <p>Osobně dopravíme kurník až k vám a postaráme se o jeho správné umístění a zprovoznění.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2>Naše realizace</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1918806/pexels-photo-1918806.jpeg" alt="Kurník v zahradě">
+                    <div class="gallery-overlay">
+                        <p>Kurník Extra Profi - Praha</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/195226/pexels-photo-195226.jpeg" alt="Detail kurníku">
+                    <div class="gallery-overlay">
+                        <p>Detail interiéru - Brno</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/1656564/pexels-photo-1656564.jpeg" alt="Spokojené slepice">
+                    <div class="gallery-overlay">
+                        <p>Spokojené slepice - Plzeň</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/2255459/pexels-photo-2255459.jpeg" alt="Kurník Top Profi">
+                    <div class="gallery-overlay">
+                        <p>Kurník Top Profi - Ostrava</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.pexels.com/photos/840111/pexels-photo-840111.jpeg" alt="Chytrý kurník">
+                    <div class="gallery-overlay">
+                        <p>Chytrý kurník - České Budějovice</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Začněme společně tvořit</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Kontaktní údaje</h3>
+                    <div class="contact-item">
+                        <div class="contact-text">
+                            <strong>Telefon</strong>
+                            <a href="tel:+420608582416">
+                                <i class="fas fa-phone"></i>
+                                +420 608 58 24 16
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-text">
+                            <strong>E-mail</strong>
+                            <a href="mailto:info@kurnik-profi.cz">
+                                <i class="fas fa-envelope"></i>
+                                info@kurnik-profi.cz
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-socials">
+                        <strong>Sociální sítě</strong>
+                        <div class="contact-social-links">
+                            <a href="https://www.facebook.com/profile.php?id=61557627565565" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com/kurnik_profi.cz/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@kurnik-profi" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Napište nám</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Jméno</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Zpráva</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="form-button">Odeslat zprávu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-wrapper">
+                <div class="footer-left">
+                    <p>&copy; 2025 KURNIK-PROFI.CZ</p>
+                </div>
+                <div class="footer-right">
+                    <a href="https://stebex.cz/" target="_blank" rel="noopener noreferrer" class="footer-credit">
+                        <span>Webové stránky od</span>
+                        <img src="https://imagedelivery.net/TtlFh2d-eb4ze5NHgekWCg/62abbdec-cbc3-45a1-6701-8a6b4ed2b800/public" alt="Stebex" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                initAnimations();
+            }, 2000);
+        });
+
+        // Initialize animations
+        function initAnimations() {
+            // Kontrola pro mobilní zařízení
+            const isMobile = window.innerWidth <= 768;
+            
+            if (!isMobile) {
+                // Hero animations pouze pro desktop
+                gsap.timeline()
+                    .to('.hero h1', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
+                    .to('.hero-subtitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
+                    .to('.cta-button', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
+                    .to('.scroll-indicator', { opacity: 1, duration: 1 }, '-=0.5');
+            } else {
+                // Pro mobil jednoduše zobrazit bez animací
+                document.querySelector('.hero h1').style.opacity = '1';
+                document.querySelector('.hero h1').style.transform = 'none';
+                document.querySelector('.hero-subtitle').style.opacity = '1';
+                document.querySelector('.hero-subtitle').style.transform = 'none';
+                document.querySelector('.cta-button').style.opacity = '1';
+                document.querySelector('.cta-button').style.transform = 'none';
+                document.querySelector('.scroll-indicator').style.opacity = '1';
+            }
+
+            // Scroll animations
+            gsap.utils.toArray('.value-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    delay: i * 0.2,
+                    ease: 'power3.out'
+                });
+            });
+
+            // Story section animation
+            gsap.from('.story-content', {
+                scrollTrigger: {
+                    trigger: '.story',
+                    start: 'top 60%'
+                },
+                x: -50,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+
+            gsap.from('.story-image', {
+                scrollTrigger: {
+                    trigger: '.story',
+                    start: 'top 60%'
+                },
+                x: 50,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'power3.out'
+            });
+
+            // Process timeline animation
+            gsap.utils.toArray('.process-step').forEach((step, i) => {
+                gsap.from(step, {
+                    scrollTrigger: {
+                        trigger: step,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    scale: 0.9,
+                    duration: 1,
+                    ease: 'power3.out'
+                });
+            });
+
+            // Product cards animation
+            gsap.utils.toArray('.product-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%'
+                    },
+                    y: 80,
+                    opacity: 0,
+                    duration: 1,
+                    delay: i * 0.2,
+                    ease: 'power3.out'
+                });
+            });
+
+            // Gallery items animation
+            gsap.utils.toArray('.gallery-item').forEach((item, i) => {
+                gsap.from(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 85%'
+                    },
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: 'power3.out'
+                });
+            });
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form
+
+        // Parallax effect for hero - pouze pro desktop
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth > 768) {  // Pouze pro desktop
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -8,15 +8,15 @@
     <link rel="icon" type="image/png" href="KurnikProfiLogo.png">
     <link rel="shortcut icon" type="image/png" href="KurnikProfiLogo.png">
     
-    <!-- Fonts -->
+    <!-- Fonty -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
+    <!-- Font Awesome ikony -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- GSAP -->
+    <!-- GSAP animační knihovna -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
@@ -33,7 +33,7 @@
             --white: #FFFFFF;
         }
         
-        /* Globální reset pro viewport */
+        /* Globální reset */
         html, body {
             width: 100%;
             overflow-x: hidden;
@@ -73,7 +73,7 @@
             box-sizing: border-box;
         }
         
-        /* Navigation */
+        /* Navigace */
         nav {
             position: fixed;
             top: 0;
@@ -140,7 +140,7 @@
             color: var(--warm-red);
         }
         
-        /* Hero Section */
+        /* Úvodní sekce */
         .hero {
             height: 100vh;
             margin-top: 90px;
@@ -149,7 +149,7 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-                        url('https://images.pexels.com/photos/1562389/pexels-photo-1562389.jpeg') center/cover;
+                        url('https://images.pexels.com/photos/1562389/pexels-photo-1562389.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;
             overflow: hidden;
         }
         
@@ -217,7 +217,7 @@
             60% { transform: translateY(-5px); }
         }
         
-        /* Story Section */
+        /* Náš příběh */
         .story {
             padding: 120px 0;
             background: var(--white);
@@ -256,7 +256,7 @@
             display: block;
         }
         
-        /* Values Section */
+        /* Naše hodnoty */
         .values {
             padding: 100px 0;
             background: linear-gradient(to bottom, var(--white), var(--cream));
@@ -314,7 +314,7 @@
             color: var(--primary-brown);
         }
         
-        /* Video Section */
+        /* Video sekce */
         .video-section {
             padding: 100px 0;
             background: var(--cream);
@@ -369,7 +369,7 @@
             border: none;
         }
         
-        /* Products Section */
+        /* Produkty */
         .products {
             padding: 120px 0;
             background: var(--white);
@@ -423,7 +423,25 @@
         
         .product-image {
             height: 250px;
-            background: url('https://images.pexels.com/photos/195226/pexels-photo-195226.jpeg') center/cover;
+            background: #f0f0f0;
+            background-image: none;
+            position: relative;
+        }
+        
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.pexels.com/photos/195226/pexels-photo-195226.jpeg?auto=compress&cs=tinysrgb&w=600') center/cover;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-image.loaded::after {
+            opacity: 1;
         }
         
         .product-content {
@@ -480,7 +498,7 @@
             transform: translateY(-2px);
         }
         
-        /* Premium Product */
+        /* Prémiový produkt */
         .premium-product {
             background: linear-gradient(135deg, var(--primary-brown), var(--light-brown));
             padding: 60px;
@@ -539,11 +557,11 @@
             box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
         }
         
-        /* Process Section */
+        /* Proces výroby */
         .process {
             padding: 120px 0;
             background: linear-gradient(rgba(255, 248, 225, 0.9), rgba(255, 248, 225, 0.9)),
-                        url('https://images.pexels.com/photos/1094767/pexels-photo-1094767.jpeg') center/cover fixed;
+                        #f5f5f5;
             position: relative;
         }
         
@@ -641,7 +659,7 @@
 
         
 
-        /* Gallery Section */
+        /* Galerie */
         .gallery {
             padding: 120px 0;
             background: var(--white);
@@ -707,11 +725,11 @@
             font-weight: 500;
         }
         
-        /* Contact Section */
+        /* Kontakt */
         .contact {
             padding: 120px 0;
             background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 248, 225, 0.92)),
-                        url('https://images.pexels.com/photos/2131784/pexels-photo-2131784.jpeg') center/cover fixed;
+                        #fafafa;
             position: relative;
         }
         
@@ -910,7 +928,7 @@
             transform: translateY(-2px);
         }
         
-        /* Footer */
+        /* Patička */
         footer {
             background: var(--primary-brown);
             color: var(--white);
@@ -965,7 +983,7 @@
             vertical-align: middle;
         }
         
-        /* Mobile specific navbar */
+        /* Mobilní navigace */
         .mobile-icons {
             display: none;
         }
@@ -992,7 +1010,7 @@
                 max-width: 100vw !important;
             }
             
-            /* Specificky pro problematické elementy */
+            /* Specifické prvky pro mobil */
             .hero,
             .story,
             .values,
@@ -1064,7 +1082,7 @@
                 padding-bottom: 0;
             }
             
-            /* Resetovat všechny transformace na mobilu */
+            /* Resetování transformací na mobilu */
             .hero h1,
             .hero-subtitle,
             .cta-button,
@@ -1073,7 +1091,7 @@
                 transform: none !important;
             }
             
-            /* Oprava nav-logo transform */
+            /* Oprava nav loga */
             .nav-logo {
                 position: static;
                 transform: none !important;
@@ -1121,12 +1139,8 @@
                 box-sizing: border-box;
             }
             
-            /* Oprava pro process sekci s fixed background */
-            .process {
-                background-attachment: scroll !important;
-            }
-            
-            /* Oprava pro contact sekci s fixed background */
+            /* Process a kontakt - scrollovací pozadí */
+            .process,
             .contact {
                 background-attachment: scroll !important;
             }
@@ -1138,7 +1152,7 @@
                 opacity: 0.1;
             }
             
-            /* Oprava pro process cards */
+            /* Process karty */
             .process-grid {
                 display: flex;
                 flex-direction: column;
@@ -1161,13 +1175,13 @@
                 font-size: 20px;
             }
             
-            /* Product cards same size on mobile */
+            /* Produkty - stejná velikost na mobilu */
             .product-card.featured {
                 transform: scale(1);
                 box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             }
             
-            /* Contact section text center on mobile */
+            /* Kontakt - vycentrování textu */
             .contact-info {
                 text-align: center;
             }
@@ -1212,7 +1226,7 @@
             }
         }
         
-        /* Tablet adjustments */
+        /* Tablet úpravy */
         @media (min-width: 768px) and (max-width: 1023px) {
             .process-number {
                 top: 20px;
@@ -1220,7 +1234,7 @@
             }
         }
         
-        /* Responsive */
+        /* Responzivní design */
         @media (max-width: 768px) {
             
             .story-grid,
@@ -1251,17 +1265,13 @@
                 height: 24px;
             }
             
-            /* Oprava pro video wrapper */
+            /* Galerie a video - responzivita */
             .video-container,
             .video-wrapper,
-            .video-wrapper iframe {
-                max-width: 100% !important;
-            }
-            
-            /* Oprava pro gallery grid */
+            .video-wrapper iframe,
             .gallery-grid {
+                max-width: 100% !important;
                 width: 100%;
-                max-width: 100%;
                 overflow: hidden;
                 padding: 0 15px;
                 box-sizing: border-box;
@@ -1293,7 +1303,7 @@
             }
         }
         
-        /* Loading Animation */
+        /* Načítací animace */
         .loader {
             position: fixed;
             top: 0;
@@ -1306,6 +1316,12 @@
             justify-content: center;
             z-index: 9999;
             transition: opacity 0.5s ease;
+        }
+        
+        /* Placeholder pro obrázky */
+        img.lazy {
+            background: #f0f0f0;
+            min-height: 200px;
         }
         
         .loader.hidden {
@@ -1342,7 +1358,7 @@
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
+    <!-- Načítací obrazovka -->
     <div class="loader" id="loader">
         <div class="loader-content">
             <div class="loader-logo">
@@ -1351,7 +1367,7 @@
         </div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Navigace -->
     <nav id="navbar">
         <div class="container">
             <div class="mobile-icons">
@@ -1387,7 +1403,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Úvodní sekce -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Domov, který si vaše slepice zaslouží</h1>
@@ -1401,7 +1417,7 @@
         </div>
     </section>
 
-    <!-- Story Section -->
+    <!-- Náš příběh -->
     <section class="story" id="story">
         <div class="container">
             <div class="story-grid">
@@ -1412,13 +1428,15 @@
                     <p>Nejde nám jen o to vyrobit kurník. Jde nám o to vytvořit dokonalý domov pro vaše slepice – bezpečný, komfortní a krásný. Místo, kde se budou cítit spokojené a kde vám budou přinášet radost každý den.</p>
                 </div>
                 <div class="story-image">
-                    <img src="https://images.pexels.com/photos/840111/pexels-photo-840111.jpeg" alt="Ruční výroba kurníku">
+                    <img src="https://images.pexels.com/photos/840111/pexels-photo-840111.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Ruční výroba kurníku" 
+                         loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Values Section -->
+    <!-- Naše hodnoty -->
     <section class="values">
         <div class="container">
             <h2>Na čem nám záleží</h2>
@@ -1454,7 +1472,7 @@
         </div>
     </section>
 
-    <!-- Smart Henhouse Video Section -->
+    <!-- Video chytrého kurníku -->
     <section class="video-section">
         <div class="container">
             <div class="smart-henhouse-intro">
@@ -1470,7 +1488,7 @@
         </div>
     </section>
 
-    <!-- Products Section -->
+    <!-- Produkty -->
     <section class="products" id="products">
         <div class="container">
             <h2>Vyberte si svůj kurník</h2>
@@ -1532,7 +1550,7 @@
         </div>
     </section>
 
-    <!-- Process Section -->
+    <!-- Proces výroby -->
     <section class="process">
         <div class="container">
             <h2>Jak vzniká váš kurník</h2>
@@ -1596,37 +1614,52 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Galerie -->
     <section class="gallery" id="gallery">
         <div class="container">
             <h2>Naše realizace</h2>
             <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/1918806/pexels-photo-1918806.jpeg" alt="Kurník v zahradě">
+                <div class="gallery-item" data-src="https://images.pexels.com/photos/1918806/pexels-photo-1918806.jpeg?auto=compress&cs=tinysrgb&w=800">
+                    <img class="lazy" 
+                         data-src="https://images.pexels.com/photos/1918806/pexels-photo-1918806.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Kurník v zahradě"
+                         loading="lazy">
                     <div class="gallery-overlay">
                         <p>Kurník Extra Profi - Praha</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/195226/pexels-photo-195226.jpeg" alt="Detail kurníku">
+                <div class="gallery-item" data-src="https://images.pexels.com/photos/195226/pexels-photo-195226.jpeg?auto=compress&cs=tinysrgb&w=600">
+                    <img class="lazy" 
+                         data-src="https://images.pexels.com/photos/195226/pexels-photo-195226.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                         alt="Detail kurníku"
+                         loading="lazy">
                     <div class="gallery-overlay">
                         <p>Detail interiéru - Brno</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/1656564/pexels-photo-1656564.jpeg" alt="Spokojené slepice">
+                <div class="gallery-item" data-src="https://images.pexels.com/photos/1656564/pexels-photo-1656564.jpeg?auto=compress&cs=tinysrgb&w=600">
+                    <img class="lazy" 
+                         data-src="https://images.pexels.com/photos/1656564/pexels-photo-1656564.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                         alt="Spokojené slepice"
+                         loading="lazy">
                     <div class="gallery-overlay">
                         <p>Spokojené slepice - Plzeň</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/2255459/pexels-photo-2255459.jpeg" alt="Kurník Top Profi">
+                <div class="gallery-item" data-src="https://images.pexels.com/photos/2255459/pexels-photo-2255459.jpeg?auto=compress&cs=tinysrgb&w=600">
+                    <img class="lazy" 
+                         data-src="https://images.pexels.com/photos/2255459/pexels-photo-2255459.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                         alt="Kurník Top Profi"
+                         loading="lazy">
                     <div class="gallery-overlay">
                         <p>Kurník Top Profi - Ostrava</p>
                     </div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.pexels.com/photos/840111/pexels-photo-840111.jpeg" alt="Chytrý kurník">
+                <div class="gallery-item" data-src="https://images.pexels.com/photos/840111/pexels-photo-840111.jpeg?auto=compress&cs=tinysrgb&w=600">
+                    <img class="lazy" 
+                         data-src="https://images.pexels.com/photos/840111/pexels-photo-840111.jpeg?auto=compress&cs=tinysrgb&w=600" 
+                         alt="Chytrý kurník"
+                         loading="lazy">
                     <div class="gallery-overlay">
                         <p>Chytrý kurník - České Budějovice</p>
                     </div>
@@ -1635,7 +1668,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Kontakt -->
     <section class="contact" id="contact">
         <div class="container">
             <h2>Začněme společně tvořit</h2>
@@ -1698,7 +1731,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Patička -->
     <footer>
         <div class="container">
             <div class="footer-wrapper">
@@ -1716,31 +1749,45 @@
     </footer>
 
     <script>
-        // GSAP Animations
+        // Animační knihovny
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-        // Loader
+        // Načítačka
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loader').classList.add('hidden');
                 initAnimations();
-            }, 2000);
+            }, 500); // Zkráceno z 2000ms na 500ms
         });
 
-        // Initialize animations
+        // Animace pro desktop a mobil
         function initAnimations() {
-            // Kontrola pro mobilní zařízení
-            const isMobile = window.innerWidth <= 768;
+            const jeMobil = window.innerWidth <= 768;
             
-            if (!isMobile) {
-                // Hero animations pouze pro desktop
+            if (!jeMobil) {
+                // Desktop animace
                 gsap.timeline()
                     .to('.hero h1', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
                     .to('.hero-subtitle', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
                     .to('.cta-button', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.5')
                     .to('.scroll-indicator', { opacity: 1, duration: 1 }, '-=0.5');
+                
+                // Scroll animace pro karty hodnot
+                gsap.utils.toArray('.value-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 85%',
+                            once: true
+                        },
+                        y: 30,
+                        opacity: 0,
+                        duration: 0.8,
+                        delay: i * 0.1
+                    });
+                });
             } else {
-                // Pro mobil jednoduše zobrazit bez animací
+                // Mobil - bez animací
                 document.querySelector('.hero h1').style.opacity = '1';
                 document.querySelector('.hero h1').style.transform = 'none';
                 document.querySelector('.hero-subtitle').style.opacity = '1';
@@ -1749,93 +1796,9 @@
                 document.querySelector('.cta-button').style.transform = 'none';
                 document.querySelector('.scroll-indicator').style.opacity = '1';
             }
-
-            // Scroll animations
-            gsap.utils.toArray('.value-card').forEach((card, i) => {
-                gsap.from(card, {
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse'
-                    },
-                    y: 50,
-                    opacity: 0,
-                    duration: 1,
-                    delay: i * 0.2,
-                    ease: 'power3.out'
-                });
-            });
-
-            // Story section animation
-            gsap.from('.story-content', {
-                scrollTrigger: {
-                    trigger: '.story',
-                    start: 'top 60%'
-                },
-                x: -50,
-                opacity: 0,
-                duration: 1.2,
-                ease: 'power3.out'
-            });
-
-            gsap.from('.story-image', {
-                scrollTrigger: {
-                    trigger: '.story',
-                    start: 'top 60%'
-                },
-                x: 50,
-                opacity: 0,
-                duration: 1.2,
-                ease: 'power3.out'
-            });
-
-            // Process timeline animation
-            gsap.utils.toArray('.process-step').forEach((step, i) => {
-                gsap.from(step, {
-                    scrollTrigger: {
-                        trigger: step,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse'
-                    },
-                    opacity: 0,
-                    scale: 0.9,
-                    duration: 1,
-                    ease: 'power3.out'
-                });
-            });
-
-            // Product cards animation
-            gsap.utils.toArray('.product-card').forEach((card, i) => {
-                gsap.from(card, {
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 80%'
-                    },
-                    y: 80,
-                    opacity: 0,
-                    duration: 1,
-                    delay: i * 0.2,
-                    ease: 'power3.out'
-                });
-            });
-
-            // Gallery items animation
-            gsap.utils.toArray('.gallery-item').forEach((item, i) => {
-                gsap.from(item, {
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 85%'
-                    },
-                    scale: 0.8,
-                    opacity: 0,
-                    duration: 0.8,
-                    delay: i * 0.1,
-                    ease: 'power3.out'
-                });
-            });
         }
 
-        // Smooth scrolling
+        // Hladké scrollování
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1849,11 +1812,50 @@
             });
         });
 
-        // Contact form
+        // Načítačka obrázků
+        document.addEventListener('DOMContentLoaded', function() {
+            const lazyImages = document.querySelectorAll('img.lazy');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(img => imageObserver.observe(img));
+            } else {
+                // Fallback pro starší prohlížeče
+                lazyImages.forEach(img => {
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                });
+            }
+            
+            // Produktové obrázky
+            const productImages = document.querySelectorAll('.product-image');
+            const productObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('loaded');
+                        productObserver.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            productImages.forEach(img => productObserver.observe(img));
+        });
+        
+        // Kontaktní formulář
 
-        // Parallax effect for hero - pouze pro desktop
+        // Parallax efekt pro hero - pouze desktop
         window.addEventListener('scroll', () => {
-            if (window.innerWidth > 768) {  // Pouze pro desktop
+            if (window.innerWidth > 768) {
                 const scrolled = window.pageYOffset;
                 const hero = document.querySelector('.hero');
                 if (hero) {
